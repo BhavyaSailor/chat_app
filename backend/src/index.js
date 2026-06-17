@@ -23,12 +23,10 @@ app.get("/health", (req, res) => {
 });
 
 
-console.log("publicDir:", publicDir);
-console.log("exists:", fs.existsSync(publicDir));
 
 if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
-  app.get("/.*/", (req, res, next) => {
+  app.get((req, res, next) => {
     res.sendFile(path.join(publicDir, "index.html"), (err) => next(err));
   });
 }
