@@ -6,6 +6,7 @@ import fs from "fs";
 import path from "path";
 import cors from "cors";
 import clerkWebhook from "./webhooks/clerk.webhook.js"
+import authRoutes from "./routes/auth.route.js"
 
 const app = express();
 const port = process.env.PORT;
@@ -25,6 +26,7 @@ app.get("/health", (req, res) => {
   });
 });
 
+app.use("/api/auth", authRoutes)
 
 
 if (fs.existsSync(publicDir)) {
