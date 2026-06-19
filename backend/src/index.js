@@ -15,6 +15,8 @@ const publicDir = path.join(process.cwd() , "public");
 app.use(express.json());
 app.use(cors({ origin: frontendUrl , credentials: true}));
 app.use(clerkMiddleware());
+
+app.use("api/webhook/clerk", express.raw({ type: "application/json"}), clerkWebhook);
  
 app.get("/health", (req, res) => {
   res.status(200).json({
